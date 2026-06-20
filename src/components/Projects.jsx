@@ -100,6 +100,8 @@ function Project({ project, index }) {
     el.style.setProperty("--ry", "0deg");
   };
 
+  const external = project.href?.startsWith("http");
+
   return (
     <li className="project reveal" style={{ "--accent": project.accent }}>
       <a
@@ -108,13 +110,24 @@ function Project({ project, index }) {
         ref={linkRef}
         onMouseMove={handleMove}
         onMouseLeave={handleLeave}
-        data-cursor="view"
+        target={external ? "_blank" : undefined}
+        rel={external ? "noopener noreferrer" : undefined}
+        data-cursor={external ? "visit" : "view"}
       >
         <div className="project__visual">
           <span className="project__index mono">
             {String(index + 1).padStart(2, "0")}
           </span>
-          <Artwork type={project.art} />
+          {project.image ? (
+            <img
+              className="project__img"
+              src={project.image}
+              alt={`${project.title} screenshot`}
+              loading="lazy"
+            />
+          ) : (
+            <Artwork type={project.art} />
+          )}
         </div>
 
         <div className="project__info">
@@ -133,6 +146,16 @@ function Project({ project, index }) {
             </span>
           </div>
           <p className="project__desc">{project.description}</p>
+          {project.details && (
+            <dl className="project__details">
+              {project.details.map((d) => (
+                <div className="project__detail" key={d.label}>
+                  <dt className="mono">{d.label}</dt>
+                  <dd>{d.value}</dd>
+                </div>
+              ))}
+            </dl>
+          )}
           <div className="project__tags">
             {project.tags.map((tag) => (
               <span key={tag}>{tag}</span>
