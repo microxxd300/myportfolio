@@ -1,33 +1,34 @@
-const SOCIALS = [
-  { label: "Email", href: "mailto:kurtlumpayao25@gmail.com" },
-  { label: "GitHub", href: "#" },
-  { label: "LinkedIn", href: "#" },
-  { label: "Dribbble", href: "#" },
-];
-
 export default function Contact() {
   return (
-    <section className="contact" id="contact">
-      <p className="contact__label mono reveal">( Contact )</p>
-      <h2 className="contact__headline reveal">
-        Have a project in mind?
-        <br />
-        <a href="mailto:kurtlumpayao25@gmail.com" className="contact__email" data-cursor>
-          Let's talk.
+    <section className="section" id="contact">
+      <div className="section__head">
+        <h2 className="section__label mono">05 — contact</h2>
+      </div>
+
+      <div className="contact reveal">
+        <p className="contact__pitch">
+          Need a backend built — an API, payments, auth, or a full product?
+          I'm available for freelance and client work.
+        </p>
+        <a
+          className="contact__mail mono"
+          href="mailto:kurtlumpayao25@gmail.com"
+        >
+          kurtlumpayao25@gmail.com ↗
         </a>
-      </h2>
-      <div className="contact__links reveal">
-        {SOCIALS.map((s) => (
+        <div className="contact__links">
           <a
-            key={s.label}
-            href={s.href}
-            target={s.href.startsWith("mailto") ? undefined : "_blank"}
+            className="mono"
+            href="https://github.com/microxxd300"
+            target="_blank"
             rel="noopener noreferrer"
-            data-cursor
           >
-            {s.label}
+            github ↗
           </a>
-        ))}
+          <a className="mono" href="#" target="_blank" rel="noopener noreferrer">
+            linkedin ↗
+          </a>
+        </div>
       </div>
     </section>
   );

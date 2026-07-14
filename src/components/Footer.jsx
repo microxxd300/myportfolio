@@ -3,9 +3,8 @@ export default function Footer() {
   return (
     <footer className="footer">
       <span className="mono">© {year} Kurt Z. Lumpayao</span>
-      <span className="mono footer__center">Designed &amp; built with care</span>
-      <a href="#top" className="footer__top mono" data-cursor>
-        Back to top ↑
+      <a href="#top" className="mono footer__top">
+        back to top ↑
       </a>
     </footer>
   );
