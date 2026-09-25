@@ -404,109 +404,89 @@ a.pill:hover {
   color: var(--ink);
 }
 
-/* ---------- Project cards ---------- */
+/* ---------- Project cards (compact 3-up) ---------- */
 .cards {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.9rem;
 }
-.card {
+.pcard {
+  display: flex;
+  flex-direction: column;
   border: 1px solid var(--line);
   border-radius: var(--r-card);
   background: var(--card);
   box-shadow: var(--shadow);
-  overflow: hidden;
-  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease),
-    background 0.3s ease, border-color 0.3s ease;
+  padding: 0.6rem;
+  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease),
+    border-color 0.25s ease;
 }
-.card:hover {
+.pcard:hover {
   transform: translateY(-3px);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 22px 44px -26px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 20px 36px -24px rgba(0, 0, 0, 0.4);
 }
-.card__media {
+.pcard__media {
   display: block;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 16 / 10;
   overflow: hidden;
-  border-bottom: 1px solid var(--line);
+  border-radius: 14px;
   background: var(--chip);
 }
-.card__media img {
+.pcard__media img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: top center;
   transition: transform 0.6s var(--ease);
 }
-.card:hover .card__media img {
-  transform: scale(1.02);
+.pcard:hover .pcard__media img {
+  transform: scale(1.03);
 }
-.card__body {
-  padding: 1.35rem 1.5rem 1.5rem;
-}
-.card__head {
+.pcard__body {
   display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 1rem;
-  margin-bottom: 0.6rem;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.75rem 0.5rem 0.4rem;
 }
-.card__title {
-  font-size: 1.15rem;
+.pcard__text {
+  min-width: 0;
+  flex: 1;
+}
+.pcard__title {
+  font-size: 0.82rem;
   font-weight: 600;
-  letter-spacing: -0.015em;
+  line-height: 1.3;
+  /* Two lines max, so every card in the row stays the same height. */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
-.card__visit {
+.pcard__meta {
+  margin-top: 0.2rem;
   color: var(--muted);
+  font-size: 0.65rem;
+  line-height: 1.4;
   white-space: nowrap;
-  transition: color 0.25s ease;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-.card__visit:hover {
-  color: var(--ink);
-}
-.card__desc {
-  color: var(--soft);
-  font-size: 0.9rem;
-  max-width: 62ch;
-}
-.card__details {
-  margin-top: 1.1rem;
-  display: flex;
-  flex-direction: column;
-}
-.card__detail {
+.pcard__go {
   display: grid;
-  grid-template-columns: 8.5rem 1fr;
-  gap: 0.3rem 1rem;
-  padding: 0.7rem 0;
-  border-top: 1px solid var(--line);
-  align-items: baseline;
-}
-.card__detail dt {
-  color: var(--muted);
-  text-transform: uppercase;
-  font-size: 0.6rem;
-  letter-spacing: 0.1em;
-}
-.card__detail dd {
-  color: var(--soft);
-  font-size: 0.84rem;
-  line-height: 1.55;
-}
-.card__tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.45rem;
-  margin-top: 1.1rem;
-}
-.card__tags li {
-  padding: 0.3rem 0.75rem;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  border-radius: 50%;
   border: 1px solid var(--line);
-  border-radius: var(--r-round);
-  color: var(--muted);
-  font-size: 0.6rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
   background: var(--chip);
+  color: var(--soft);
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+.pcard__go:hover {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--bg);
 }
 
 /* ---------- Skills ---------- */
@@ -665,8 +645,17 @@ a.pill:hover {
   }
 }
 
+@media (max-width: 900px) {
+  .cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 640px) {
   .bento {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .cards {
     grid-template-columns: minmax(0, 1fr);
   }
   .hero-bento {
