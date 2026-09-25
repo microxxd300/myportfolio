@@ -1,64 +1,92 @@
-# Kurt Z. Lumpayao — Portfolio
+# Personal CV Web Page — Kurt Z. Lumpayao
 
-A minimal, client-ready portfolio built with **React + Vite**. Sidebar layout,
-mono typography, numbered sections, and light/dark/system theme toggle.
+My personal curriculum vitae and portfolio, built as a single-page web
+app with **React + Vite**. It presents a short profile, my education,
+my skills, the projects I have deployed, and how to contact me.
 
-## Run it
+## Student Information
+
+| | |
+| --- | --- |
+| **Complete Name** | Kurt Z. Lumpayao |
+| **Year Level** | 4th Year |
+| **Set / Section** | _to be filled in_ |
+| **Subject** | _to be filled in_ |
+| **School** | Davao del Norte State College |
+
+## Live Site
+
+<!-- Replace with your deployed URL once it is live. -->
+_Deployment link to be added._
+
+## What the Page Contains
+
+| Section | What it covers |
+| ------- | -------------- |
+| Profile | Name, photo, short introduction, availability |
+| Projects | Three deployed projects, each linking to the live site |
+| Skills | Languages, frameworks, data, infrastructure, tooling |
+| Services | The kind of backend work I take on |
+| Education | Course, school, and year level |
+| Contact | Email, GitHub, location |
+
+## Built With
+
+- **React 18** — the page is composed of small components, one per section
+- **Vite** — dev server and production build
+- **Plain CSS** — no framework; design tokens live in `:root`
+
+## Running It Locally
 
 ```bash
 npm install
 npm run dev
 ```
 
-Then open the URL Vite prints (usually http://localhost:5173).
+Vite prints a local URL (usually http://localhost:5173) — open it in a
+browser. To produce the deployable files:
 
-Production build: `npm run build` · preview it: `npm run preview`
-
-## Make it yours
-
-| What | Where |
-| ---- | ----- |
-| Projects (title, description, details, tags, screenshot) | `src/data/projects.js` |
-| Name / nav links | `src/components/Sidebar.jsx` |
-| Bio, photo, social links | `src/components/Hero.jsx` |
-| Stat tiles | `src/components/Stats.jsx` |
-| Services offered | `src/components/Services.jsx` |
-| Tech stack chips | `src/components/StackSection.jsx` |
-| Education | `src/components/Education.jsx` |
-| Email / contact | `src/components/Contact.jsx` |
-| Colors & theme variables | `:root` blocks in `src/index.css` |
-
-### Adding your photo
-
-Drop a photo at `assets/profile.png` (or `.jpg` / `.webp`) — it appears
-automatically in the hero with a halftone treatment. Until then an initials
-block is shown.
-
-### Adding a project
-
-Add a screenshot to `assets/`, import it at the top of
-`src/data/projects.js`, and add an object to the array:
-
-```js
-{
-  id: 3,
-  title: "My New Project",
-  description: "One or two sentences on what it is.",
-  details: [
-    { label: "Tech Stack", value: "Django, PostgreSQL, ..." },
-    { label: "Infrastructure", value: "Render, Supabase, ..." },
-    { label: "Features", value: "Auth, payments, ..." },
-  ],
-  tags: ["Backend", "Django", "Live"],
-  image: myImg,
-  href: "https://my-project.vercel.app",
-}
+```bash
+npm run build     # outputs to dist/
+npm run preview   # serves dist/ to check it before deploying
 ```
 
-## Notes
+## How the Code Is Organised
 
-- Theme: system / light / dark toggle in the sidebar, persisted in
-  localStorage, no flash on load.
-- Fully responsive; sidebar collapses to a top bar on mobile.
-- Respects `prefers-reduced-motion`.
-- Fonts: Inter + Space Mono (Google Fonts).
+```
+index.html              page shell, fonts, favicon
+src/
+  main.jsx              mounts React onto #root
+  App.jsx               lists the sections in page order
+  index.css             all styling, design tokens at the top
+  components/           one file per section of the page
+  data/projects.js      project content, kept out of the markup
+  hooks/useReveal.js    fades sections in as they scroll into view
+assets/                 photo and project screenshots
+public/favicon.svg      browser tab icon
+```
+
+### The layout
+
+Every block on the page is a rounded card (`.bx` in `index.css`) placed
+on a CSS Grid. Cards span one or two columns and collapse to a single
+column on phones, which is what gives the page its "bento" look.
+
+### Editing the content
+
+| What to change | Where |
+| -------------- | ----- |
+| Projects | `src/data/projects.js` |
+| Name, photo, intro | `src/components/Hero.jsx` |
+| Skills | `src/components/StackSection.jsx` |
+| Education | `src/components/Education.jsx` |
+| Contact details | `src/components/Contact.jsx` |
+| Colors, spacing, radii | `:root` in `src/index.css` |
+
+To add a project: put a screenshot in `assets/`, import it at the top of
+`src/data/projects.js`, and add an object to the array.
+
+## Author
+
+**Kurt Z. Lumpayao** — kurtlumpayao25@gmail.com
+GitHub: [@microxxd300](https://github.com/microxxd300)
