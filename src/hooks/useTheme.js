@@ -11,8 +11,9 @@ function systemTheme() {
 // Cycles between system / light / dark, persists the choice, and
 // stamps the resolved theme on <html data-theme="...">.
 export function useTheme() {
+  // Light is the default until the visitor picks something else.
   const [mode, setMode] = useState(
-    () => localStorage.getItem(STORAGE_KEY) || "system"
+    () => localStorage.getItem(STORAGE_KEY) || "light"
   );
 
   useEffect(() => {

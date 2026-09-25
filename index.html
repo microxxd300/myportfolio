@@ -15,8 +15,7 @@
         var t = localStorage.getItem("theme");
         var dark =
           t === "dark" ||
-          ((!t || t === "system") &&
-            matchMedia("(prefers-color-scheme: dark)").matches);
+          (t === "system" && matchMedia("(prefers-color-scheme: dark)").matches);
         document.documentElement.dataset.theme = dark ? "dark" : "light";
       })();
     </script>
