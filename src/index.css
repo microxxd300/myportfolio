@@ -195,9 +195,9 @@ img {
   z-index: 1;
 }
 .content {
-  max-width: 660px;
+  max-width: 820px;
   margin: 0 auto;
-  padding: 4.5rem 1.5rem 2.5rem;
+  padding: 3.5rem 1.5rem 2.5rem;
 }
 
 /* ---------- Hero ---------- */
@@ -320,8 +320,8 @@ img {
 
 /* ---------- Sections ---------- */
 .section {
-  margin-top: 4.5rem;
-  scroll-margin-top: 2.5rem;
+  margin-top: 2.6rem;
+  scroll-margin-top: 1.5rem;
 }
 .section__head {
   display: flex;
@@ -677,6 +677,24 @@ a.pill:hover {
   min-width: 0;
 }
 
+/* ---------- Bento grid ---------- */
+.bento {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+  align-items: start;
+}
+/* Grid children must be allowed to shrink or long words blow the track. */
+.bento > * {
+  min-width: 0;
+}
+.bento--tight {
+  gap: 0.7rem;
+}
+.bx--full {
+  grid-column: 1 / -1;
+}
+
 /* ---------- Responsive ---------- */
 @media (max-width: 900px) {
   .sidebar {
@@ -715,6 +733,9 @@ a.pill:hover {
 }
 
 @media (max-width: 640px) {
+  .bento {
+    grid-template-columns: minmax(0, 1fr);
+  }
   .hero {
     flex-direction: column;
     gap: 1.6rem;
