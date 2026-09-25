@@ -284,31 +284,26 @@ img {
   }
 }
 
-/* ---------- Stats ---------- */
+/* ---------- Stats (bento tiles) ---------- */
 .stats {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  margin-top: 3rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.9rem;
+  margin-top: 0.9rem;
 }
 .stat {
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
-  padding: 1.15rem 1rem;
-  border-left: 1px solid var(--line);
-}
-.stat:first-child {
-  border-left: 0;
+  gap: 0.25rem;
+  padding: 1.05rem 1.1rem;
 }
 .stat__value {
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   font-weight: 700;
 }
 .stat__label {
   color: var(--muted);
-  font-size: 0.58rem;
+  font-size: 0.56rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
 }
@@ -747,12 +742,6 @@ a.pill:hover {
   }
   .stats {
     grid-template-columns: 1fr 1fr;
-  }
-  .stat:nth-child(2n + 1) {
-    border-left: 0;
-  }
-  .stat:nth-child(n + 3) {
-    border-top: 1px solid var(--line);
   }
   .services {
     grid-template-columns: 1fr;
