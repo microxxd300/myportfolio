@@ -2,6 +2,7 @@ const STACK = [
   "Python",
   "Django",
   "Django REST Framework",
+  "FastAPI",
   "PostgreSQL",
   "Redis",
   "Celery",
