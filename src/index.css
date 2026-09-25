@@ -475,31 +475,30 @@ img {
 }
 
 /* ---------- Education ---------- */
+.edu {
+  padding: 1.5rem 1.6rem;
+}
 .edu__row {
-  display: grid;
-  grid-template-columns: 5.5rem 1fr auto;
-  gap: 0.4rem 1.2rem;
-  align-items: baseline;
-  padding: 0.9rem 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+/* Hairline between entries only, never above the first one. */
+.edu__row + .edu__row {
+  margin-top: 1.2rem;
+  padding-top: 1.2rem;
   border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
 }
-.edu__year {
-  color: var(--muted);
-}
-.edu__title {
-  font-weight: 600;
-  font-size: 0.92rem;
-}
-.edu__where {
-  color: var(--soft);
-  font-size: 0.84rem;
+.edu__main {
+  min-width: 0;
 }
 .edu__note {
-  margin-top: 1rem;
+  margin-top: 1.3rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--line);
   color: var(--soft);
-  font-size: 0.88rem;
-  max-width: 52ch;
+  font-size: 0.86rem;
 }
 
 /* ---------- Contact ---------- */
@@ -742,8 +741,9 @@ a.pill:hover {
     gap: 0.2rem;
   }
   .edu__row {
-    grid-template-columns: 1fr;
-    gap: 0.15rem;
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    gap: 0.5rem;
   }
 }
 
