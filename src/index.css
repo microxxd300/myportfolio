@@ -18,18 +18,26 @@
   --sans: "Inter", system-ui, -apple-system, sans-serif;
   --mono: "Space Mono", "SFMono-Regular", ui-monospace, monospace;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Bento geometry — shared by every card, pill and chip. */
+  --r-card: 20px;
+  --r-pill: 12px;
+  --r-round: 999px;
+  --bx-pad: 1.35rem 1.5rem;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 10px 30px -22px rgba(0, 0, 0, 0.3);
 }
 
 :root[data-theme="dark"] {
-  --bg: #0f0f0e;
-  --card: #161615;
+  --bg: #080808;
+  --card: #141413;
   --ink: #ececea;
   --soft: #b4b4ad;
   --muted: #7d7d76;
-  --line: #262624;
-  --chip: #1d1d1b;
+  --line: #222220;
+  --chip: #1e1e1c;
   --dot: #262624;
   --green: #3fbf6c;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.5), 0 10px 30px -22px rgba(0, 0, 0, 0.8);
 }
 
 /* ---------- Reset ---------- */
@@ -573,6 +581,100 @@ img {
 .reveal.is-visible {
   opacity: 1;
   transform: none;
+}
+
+/* ============================================================
+   Bento primitives
+   Every block on the page is a .bx card sitting on the .bento
+   grid. Rows of pills (.chiprow) sit behind a label and a
+   hairline rule, the way the reference layout does it.
+   ============================================================ */
+.bx {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--r-card);
+  padding: var(--bx-pad);
+  box-shadow: var(--shadow);
+  transition: background 0.3s ease, border-color 0.3s ease,
+    transform 0.35s var(--ease);
+}
+
+/* Label + rule + pills, e.g. "Interests | Gaming  Film Making" */
+.bx--row {
+  display: flex;
+  align-items: center;
+  gap: 1.15rem;
+}
+.bx__label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.bx__rule {
+  align-self: stretch;
+  width: 1px;
+  background: var(--line);
+  flex-shrink: 0;
+}
+
+/* Card header: title on the left, year/meta pill on the right. */
+.bx__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.bx__title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+}
+.bx__sub {
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin-top: 0.1rem;
+}
+
+/* ---------- Pills ---------- */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: var(--r-pill);
+  background: var(--chip);
+  color: var(--soft);
+  font-size: 0.78rem;
+  white-space: nowrap;
+  transition: border-color 0.25s ease, color 0.25s ease, background 0.3s ease;
+}
+a.pill:hover {
+  border-color: var(--muted);
+  color: var(--ink);
+}
+.pill--year {
+  border-radius: var(--r-round);
+  padding: 0.35rem 0.85rem;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  flex-shrink: 0;
+}
+.pill__ico {
+  width: 16px;
+  height: 16px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.chiprow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  min-width: 0;
 }
 
 /* ---------- Responsive ---------- */
