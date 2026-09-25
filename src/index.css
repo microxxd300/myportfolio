@@ -663,7 +663,7 @@ a.pill:hover {
   }
   .bx--photo {
     grid-row: auto;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 1 / 1;
   }
   .bx--row {
     flex-wrap: wrap;
