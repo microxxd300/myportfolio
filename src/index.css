@@ -340,19 +340,20 @@ img {
 .cards {
   display: flex;
   flex-direction: column;
-  gap: 2.2rem;
+  gap: 0.9rem;
 }
 .card {
   border: 1px solid var(--line);
-  border-radius: 10px;
+  border-radius: var(--r-card);
   background: var(--card);
+  box-shadow: var(--shadow);
   overflow: hidden;
   transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease),
     background 0.3s ease, border-color 0.3s ease;
 }
 .card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 18px 40px -22px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 22px 44px -26px rgba(0, 0, 0, 0.45);
 }
 .card__media {
   display: block;
@@ -372,7 +373,7 @@ img {
   transform: scale(1.02);
 }
 .card__body {
-  padding: 1.4rem 1.5rem 1.5rem;
+  padding: 1.35rem 1.5rem 1.5rem;
 }
 .card__head {
   display: flex;
@@ -382,9 +383,9 @@ img {
   margin-bottom: 0.6rem;
 }
 .card__title {
-  font-size: 1.05rem;
+  font-size: 1.15rem;
   font-weight: 600;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
 }
 .card__visit {
   color: var(--muted);
@@ -397,7 +398,7 @@ img {
 .card__desc {
   color: var(--soft);
   font-size: 0.9rem;
-  max-width: 56ch;
+  max-width: 62ch;
 }
 .card__details {
   margin-top: 1.1rem;
@@ -408,7 +409,7 @@ img {
   display: grid;
   grid-template-columns: 8.5rem 1fr;
   gap: 0.3rem 1rem;
-  padding: 0.65rem 0;
+  padding: 0.7rem 0;
   border-top: 1px solid var(--line);
   align-items: baseline;
 }
@@ -430,9 +431,9 @@ img {
   margin-top: 1.1rem;
 }
 .card__tags li {
-  padding: 0.28rem 0.7rem;
+  padding: 0.3rem 0.75rem;
   border: 1px solid var(--line);
-  border-radius: 100px;
+  border-radius: var(--r-round);
   color: var(--muted);
   font-size: 0.6rem;
   text-transform: uppercase;
