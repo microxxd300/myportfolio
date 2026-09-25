@@ -441,23 +441,15 @@ img {
   background: var(--chip);
 }
 
-/* ---------- Stack chips ---------- */
-.chips {
+/* ---------- Skills ---------- */
+.stack {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
+  flex-direction: column;
+  gap: 0.7rem;
 }
-.chips li {
-  padding: 0.4rem 0.85rem;
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  background: var(--card);
-  color: var(--soft);
-  transition: border-color 0.25s ease, color 0.25s ease, background 0.3s ease;
-}
-.chips li:hover {
-  border-color: var(--muted);
-  color: var(--ink);
+.stack .bx__label {
+  width: 11.5rem;
+  flex-shrink: 0;
 }
 
 /* ---------- Services ---------- */
@@ -740,6 +732,9 @@ a.pill:hover {
   }
   .bx__rule {
     display: none;
+  }
+  .stack .bx__label {
+    width: auto;
   }
   .stats {
     grid-template-columns: 1fr 1fr;

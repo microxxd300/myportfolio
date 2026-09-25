@@ -2,7 +2,7 @@ import ThemeToggle from "./ThemeToggle.jsx";
 
 const NAV = [
   { label: "Projects", href: "#projects" },
-  { label: "Stack", href: "#stack" },
+  { label: "Skills", href: "#stack" },
   { label: "Services", href: "#services" },
   { label: "Education", href: "#education" },
   { label: "Contact", href: "#contact" },
