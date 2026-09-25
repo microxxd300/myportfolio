@@ -1,5 +1,3 @@
-import ThemeToggle from "./ThemeToggle.jsx";
-
 const NAV = [
   { label: "Projects", href: "#projects" },
   { label: "Skills", href: "#stack" },
@@ -24,7 +22,6 @@ export default function Sidebar() {
       </nav>
 
       <div className="sidebar__bottom">
-        <ThemeToggle />
         <a
           className="sidebar__mail mono"
           href="mailto:kurtlumpayao25@gmail.com"

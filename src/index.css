@@ -1,18 +1,18 @@
 /* ============================================================
    Kurt Z. Lumpayao — Portfolio
-   Minimal, mono-typography, sidebar layout. Light + dark themes
-   via [data-theme] on <html>, set before paint in index.html.
+   Minimal, mono-typography, sidebar layout on a bento card grid.
+   Single light palette — see :root below.
    ============================================================ */
 
 :root {
-  --bg: #f7f7f4;
-  --card: #ffffff;
-  --ink: #191917;
-  --soft: #55554f;
-  --muted: #8b8b83;
-  --line: #e4e4dd;
-  --chip: #efefe9;
-  --dot: #d9d9d2;
+  --bg: #ffffff;
+  --card: #fcfcfb;
+  --ink: #17171a;
+  --soft: #52525b;
+  --muted: #8a8a93;
+  --line: #e7e7e3;
+  --chip: #f4f4f1;
+  --dot: #e2e2dd;
   --green: #2f9e57;
 
   --sans: "Inter", system-ui, -apple-system, sans-serif;
@@ -25,19 +25,6 @@
   --r-round: 999px;
   --bx-pad: 1.35rem 1.5rem;
   --shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 10px 30px -22px rgba(0, 0, 0, 0.3);
-}
-
-:root[data-theme="dark"] {
-  --bg: #080808;
-  --card: #141413;
-  --ink: #ececea;
-  --soft: #b4b4ad;
-  --muted: #7d7d76;
-  --line: #222220;
-  --chip: #1e1e1c;
-  --dot: #262624;
-  --green: #3fbf6c;
-  --shadow: 0 1px 2px rgba(0, 0, 0, 0.5), 0 10px 30px -22px rgba(0, 0, 0, 0.8);
 }
 
 /* ---------- Reset ---------- */
@@ -266,37 +253,6 @@ a.pill:hover {
   transition: color 0.25s ease;
 }
 .sidebar__mail:hover {
-  color: var(--ink);
-}
-
-/* ---------- Theme toggle ---------- */
-.theme {
-  display: inline-flex;
-  gap: 2px;
-  padding: 3px;
-  border: 1px solid var(--line);
-  border-radius: 100px;
-  width: fit-content;
-  background: var(--card);
-  transition: background 0.3s ease, border-color 0.3s ease;
-}
-.theme__btn {
-  display: grid;
-  place-items: center;
-  width: 26px;
-  height: 26px;
-  border: 0;
-  border-radius: 50%;
-  background: transparent;
-  color: var(--muted);
-  cursor: pointer;
-  transition: background 0.25s ease, color 0.25s ease;
-}
-.theme__btn:hover {
-  color: var(--ink);
-}
-.theme__btn.is-active {
-  background: var(--chip);
   color: var(--ink);
 }
 

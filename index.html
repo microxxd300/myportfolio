@@ -11,17 +11,6 @@
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-    <script>
-      // Set theme before paint to avoid a flash of the wrong mode.
-      (function () {
-        var t = localStorage.getItem("theme");
-        var dark =
-          t === "dark" ||
-          (t === "system" && matchMedia("(prefers-color-scheme: dark)").matches);
-        document.documentElement.dataset.theme = dark ? "dark" : "light";
-      })();
-    </script>
-
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
