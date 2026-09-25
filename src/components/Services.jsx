@@ -25,7 +25,7 @@ export default function Services() {
       </div>
       <div className="services reveal">
         {SERVICES.map((s) => (
-          <div className="service" key={s.title}>
+          <div className="bx service" key={s.title}>
             <h3 className="service__title">{s.title}</h3>
             <p className="service__desc">{s.desc}</p>
           </div>
