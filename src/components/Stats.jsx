@@ -1,5 +1,5 @@
 const STATS = [
-  { value: "03", label: "Live Projects" },
+  { value: "04", label: "Live Projects" },
   { value: "Django", label: "Core Stack" },
   { value: "E2E", label: "API to Deploy" },
   { value: "PH", label: "Davao del Norte" },
