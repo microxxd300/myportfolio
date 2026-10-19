@@ -3,6 +3,7 @@
 //  `image` is an imported screenshot from /assets.
 // ─────────────────────────────────────────────────────────────
 
+import studyHubImg from "../../assets/study_buddy.png";
 import aiTextToolkitImg from "../../assets/AI_text_toolkit.png";
 import ecommerceImg from "../../assets/ecommerce-website.png";
 import blogImg from "../../assets/blog-website.png";
@@ -10,6 +11,32 @@ import blogImg from "../../assets/blog-website.png";
 export const projects = [
   {
     id: 1,
+    title: "Study Hub — focus tracking with AI study help",
+    description:
+      "A study app where logged focus sessions build a streak and a year-long activity heatmap, backed by an async FastAPI service that streams AI study help over SSE and falls back to a second provider when the primary one fails.",
+    details: [
+      {
+        label: "Tech Stack",
+        value:
+          "Python 3.12 (async), FastAPI, Pydantic v2, Uvicorn, SQLAlchemy 2.0 (async) + asyncpg, Alembic, PostgreSQL, Redis, Pytest",
+      },
+      {
+        label: "Infrastructure",
+        value:
+          "Supabase (Postgres + Auth), Upstash Redis, Render, Docker + Compose, Resend, cron-job.org",
+      },
+      {
+        label: "Features",
+        value:
+          "Supabase Auth with JWT/JWKS verification, Gemini responses streamed over SSE with a Groq fallback, Redis caching, SlowAPI rate limiting, Alembic migrations, transactional email via Resend, scheduled jobs on cron-job.org, Pytest suite",
+      },
+    ],
+    tags: ["Backend", "FastAPI", "AI", "Live"],
+    image: studyHubImg,
+    href: "https://study-hub-gray-seven.vercel.app",
+  },
+  {
+    id: 2,
     title: "AI Text Toolkit — LLM API with usage accounting",
     description:
       "A production LLM API for summarizing, rewriting, and translating text — where every response reports its own token usage and estimated cost, the model provider is swappable by config, and provider failures degrade gracefully. Deployed end to end with a React client.",
@@ -31,7 +58,7 @@ export const projects = [
     href: "https://llm-mental-model-frontend.vercel.app/",
   },
   {
-    id: 2,
+    id: 3,
     title: "E-commerce Marketplace Backend",
     description:
       "A production e-commerce REST API with payments, verified reviews, smart search, and async email receipts — deployed end to end and consumed by a live React storefront.",
@@ -56,7 +83,7 @@ export const projects = [
     href: "https://ecommerce-storefront-silk.vercel.app/",
   },
   {
-    id: 3,
+    id: 4,
     title: "Full-Stack Blog Platform",
     description:
       "A production blog platform with multi-user accounts, posts, and asynchronous background processing — deployed end to end.",
