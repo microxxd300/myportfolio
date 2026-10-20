@@ -1,5 +1,5 @@
 import { RevealLetters, RevealLines, FadeUp } from "./Reveal.jsx";
-import LiquidImage from "./LiquidImage.jsx";
+import { useLiquidFilter, LiquidFilterDefs } from "./LiquidFilter.jsx";
 import portrait from "../../assets/profile_suit_cutout.webp";
 
 // The hero waits out the preloader: ~2000ms of counting plus the wipe.
@@ -8,6 +8,9 @@ const REVEAL_DELAY = 2500;
 const ROLES = ["Backend", "Developer", "Builder", "Student"];
 
 export default function Hero() {
+  // The watery distortion rides the name, not the portrait.
+  const { filterId, hostRef, dispRef, turbRef } = useLiquidFilter(14);
+
   return (
     <section className="hero" id="top">
       <div className="hero__top">
@@ -33,18 +36,26 @@ export default function Hero() {
       </div>
 
       <div className="hero__portrait">
-        <LiquidImage
+        <img
+          className="hero__photo"
           src={portrait}
           alt="Portrait of Kurt Z. Lumpayao"
-          bare
-          maxScale={12}
-          className="hero__liquid"
         />
       </div>
 
       <div className="hero__base" aria-hidden="true" />
 
-      <h1 className="hero__name display">
+      <LiquidFilterDefs
+        filterId={filterId}
+        turbRef={turbRef}
+        dispRef={dispRef}
+      />
+
+      <h1
+        className="hero__name display"
+        ref={hostRef}
+        style={{ filter: `url(#${filterId})` }}
+      >
         <span className="hero__line">
           <RevealLetters text="Kurt" delay={REVEAL_DELAY} immediate />
         </span>

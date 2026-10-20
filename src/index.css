@@ -494,15 +494,15 @@ main {
   width: 80vw;
   pointer-events: none;
 }
-.hero__liquid {
+/* A cutout, not a crop - contain keeps the whole figure intact. */
+.hero__photo {
   width: 100%;
   height: 100%;
-  pointer-events: auto;
-}
-/* A cutout, not a crop - contain keeps the whole figure intact. */
-.hero__liquid .liquid__img {
   object-fit: contain;
   object-position: center bottom;
+  /* Takes the pointer so hovering the figure does not wobble the name
+     behind it; only the visible lettering either side responds. */
+  pointer-events: auto;
 }
 @media (min-width: 640px) {
   .hero__portrait {
@@ -541,7 +541,6 @@ main {
   /* A hair of bleed so the name kisses the bottom edge. The spec's 6%
      cut too much off a surname this long to stay readable. */
   transform: translateY(2%);
-  pointer-events: none;
 }
 .hero__line {
   display: block;
@@ -1031,9 +1030,6 @@ main {
   overflow: hidden;
   background: var(--surface);
   display: block;
-}
-.liquid--bare {
-  background: none;
 }
 .liquid__defs {
   position: absolute;
