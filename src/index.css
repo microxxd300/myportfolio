@@ -550,12 +550,24 @@ main {
   .hero__name {
     font-size: min(13rem, 24vw);
   }
-  /* On a narrow screen the portrait is tall enough to swallow the
-     description. Shorten it so the copy clears the figure, and narrow
-     it so the name still reads either side. */
+  /* Put the figure in normal flow on phones. Positioning it absolutely
+     over the copy meant anything that changed text height - a longer
+     paragraph, or an in-app browser's shorter viewport - dropped it
+     straight onto the description. In flow it simply takes whatever
+     height is left below the text, so they can never collide. */
   .hero__portrait {
-    height: 46vh;
-    width: 72vw;
+    position: relative;
+    inset: auto;
+    transform: none;
+    width: 100%;
+    height: auto;
+    flex: 1 1 auto;
+    min-height: 42vh;
+    margin-top: 1.25rem;
+  }
+  .hero__photo {
+    position: absolute;
+    inset: 0;
   }
   .hero__top {
     padding-top: 6rem;
