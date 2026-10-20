@@ -1,33 +1,34 @@
-import { useReveal } from "./hooks/useReveal.js";
-import Sidebar from "./components/Sidebar.jsx";
+import { useAdaptiveGrid } from "./hooks/useAdaptiveGrid.js";
+import { useLenis } from "./hooks/useLenis.js";
+import Preloader from "./components/Preloader.jsx";
+import SiteNav from "./components/SiteNav.jsx";
 import Hero from "./components/Hero.jsx";
-import Stats from "./components/Stats.jsx";
+import Marquee from "./components/Marquee.jsx";
+import Story from "./components/Story.jsx";
 import Projects from "./components/Projects.jsx";
+import Impact from "./components/Impact.jsx";
 import StackSection from "./components/StackSection.jsx";
-import Services from "./components/Services.jsx";
 import Education from "./components/Education.jsx";
-import Contact from "./components/Contact.jsx";
-import Footer from "./components/Footer.jsx";
+import ContactFooter from "./components/ContactFooter.jsx";
 
 export default function App() {
-  useReveal();
+  useAdaptiveGrid();
+  const lenisRef = useLenis();
 
   return (
-    <div id="top">
-      <div className="dots" aria-hidden="true" />
-      <Sidebar />
-      <main className="main">
-        <div className="content">
-          <Hero />
-          <Stats />
-          <Projects />
-          <StackSection />
-          <Services />
-          <Education />
-          <Contact />
-          <Footer />
-        </div>
+    <>
+      <Preloader lenisRef={lenisRef} />
+      <SiteNav />
+      <main>
+        <Hero />
+        <Marquee />
+        <Story />
+        <Projects />
+        <Impact />
+        <StackSection />
+        <Education />
+        <ContactFooter />
       </main>
-    </div>
+    </>
   );
 }
