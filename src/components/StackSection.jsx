@@ -1,5 +1,5 @@
-// Grouped so the section reads as a skills summary rather than one
-// long undifferentiated chip soup.
+import { RevealLines, FadeUp } from "./Reveal.jsx";
+
 const GROUPS = [
   {
     label: "Languages & Frameworks",
@@ -7,7 +7,7 @@ const GROUPS = [
   },
   {
     label: "Data & Infrastructure",
-    items: ["PostgreSQL", "Redis", "Celery", "Docker"],
+    items: ["PostgreSQL", "Supabase", "Redis", "Celery", "Docker"],
   },
   {
     label: "Frontend",
@@ -15,32 +15,36 @@ const GROUPS = [
   },
   {
     label: "Tooling",
-    items: ["Git & CI/CD", "Stripe", "JWT / OAuth2", "Swagger"],
+    items: ["Git & CI/CD", "Stripe", "JWT / OAuth2", "Swagger", "Pytest"],
   },
 ];
 
 export default function StackSection() {
   return (
-    <section className="section" id="stack">
-      <div className="section__head">
-        <h2 className="section__label mono">02 — skills</h2>
+    <section className="section skills" id="skills">
+      <div className="skills__head">
+        <p className="eyebrow">The Toolkit</p>
+        <RevealLines
+          as="h2"
+          className="skills__heading display t-h2"
+          lines={["What I build with."]}
+        />
       </div>
 
-      <div className="stack reveal">
-        {GROUPS.map((g) => (
-          <div className="bx bx--row" key={g.label}>
-            <span className="bx__label">{g.label}</span>
-            <span className="bx__rule" aria-hidden="true" />
-            <ul className="chiprow">
+      <ul className="skills__list">
+        {GROUPS.map((g, i) => (
+          <FadeUp as="li" className="skillrow" key={g.label} delay={i * 90}>
+            <h3 className="skillrow__label t-body">{g.label}</h3>
+            <ul className="skillrow__chips">
               {g.items.map((item) => (
-                <li className="pill" key={item}>
+                <li className="chip t-eyebrow" key={item}>
                   {item}
                 </li>
               ))}
             </ul>
-          </div>
+          </FadeUp>
         ))}
-      </div>
+      </ul>
     </section>
   );
 }

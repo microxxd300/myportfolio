@@ -1,5 +1,7 @@
-// Add past schools here as they apply — each entry renders as its own
-// row with the year pill on the right.
+import { RevealLines, FadeUp } from "./Reveal.jsx";
+
+// Add past schools here as they apply — each renders as its own row
+// with the year pill on the right.
 const ENTRIES = [
   {
     degree: "BS Information Technology",
@@ -11,28 +13,28 @@ const ENTRIES = [
 
 export default function Education() {
   return (
-    <section className="section" id="education">
-      <div className="section__head">
-        <h2 className="section__label mono">04 — education</h2>
+    <section className="section education" id="education">
+      <div className="education__head">
+        <p className="eyebrow">Education</p>
+        <RevealLines
+          as="h2"
+          className="education__heading display t-h2"
+          lines={["Where I'm studying."]}
+        />
       </div>
 
-      <div className="bx edu reveal">
-        {ENTRIES.map((e) => (
-          <div className="edu__row" key={e.degree}>
+      <ul className="education__list">
+        {ENTRIES.map((e, i) => (
+          <FadeUp as="li" className="edu" key={e.degree} delay={i * 110}>
             <div className="edu__main">
-              <h3 className="bx__title">{e.degree}</h3>
-              <p className="bx__sub">{e.school}</p>
-              <p className="bx__sub">{e.place}</p>
+              <h3 className="edu__degree">{e.degree}</h3>
+              <p className="edu__where t-body">{e.school}</p>
+              <p className="edu__where t-body">{e.place}</p>
             </div>
-            <span className="pill pill--year">{e.year}</span>
-          </div>
+            <span className="edu__year t-eyebrow">{e.year}</span>
+          </FadeUp>
         ))}
-
-        <p className="edu__note">
-          Studying by day, shipping production systems by night — every project
-          above is deployed, monitored, and serving real users.
-        </p>
-      </div>
+      </ul>
     </section>
   );
 }

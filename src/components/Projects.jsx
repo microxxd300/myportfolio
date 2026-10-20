@@ -1,82 +1,75 @@
 import { projects } from "../data/projects.js";
+import { RevealLines, FadeUp } from "./Reveal.jsx";
+import LiquidImage from "./LiquidImage.jsx";
 
-// The compact card shows the stack line rather than the full detail
-// table — the long-form details stay in projects.js.
-function stackLine(project) {
-  const stack = project.details?.find((d) => d.label === "Tech Stack");
-  return stack ? stack.value : project.tags.join(" · ");
-}
-
-function Project({ project }) {
-  return (
-    <article className="pcard reveal">
-      <a
-        className="pcard__media"
-        href={project.href}
-        target="_blank"
-        rel="noopener noreferrer"
-        tabIndex={-1}
-        aria-hidden="true"
-      >
-        <img
-          src={project.image}
-          alt=""
-          loading="lazy"
-        />
-      </a>
-
-      <div className="pcard__body">
-        <div className="pcard__text">
-          <h3 className="pcard__title">{project.title}</h3>
-          <p className="pcard__meta">{stackLine(project)}</p>
-        </div>
-
-        <a
-          className="pcard__go"
-          href={project.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={`Visit ${project.title}`}
-        >
-          <svg
-            viewBox="0 0 24 24"
-            width="14"
-            height="14"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2.2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            aria-hidden="true"
-          >
-            <path d="M7 17 17 7M8 7h9v9" />
-          </svg>
-        </a>
-      </div>
-    </article>
-  );
+// Titles read "Name — what it is"; the card wants those halves apart.
+function splitTitle(title) {
+  const [name, ...rest] = title.split("—");
+  return { name: name.trim(), kicker: rest.join("—").trim() };
 }
 
 export default function Projects() {
   return (
-    <section className="section" id="projects">
-      <div className="section__head">
-        <h2 className="section__label mono">01 — projects</h2>
-        <a
-          className="section__more mono"
-          href="https://github.com/microxxd300"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          all projects →
-        </a>
+    <section className="section ventures" id="projects">
+      <div className="ventures__head">
+        <div>
+          <p className="eyebrow">Selected Work</p>
+          <RevealLines
+            as="h2"
+            className="ventures__heading display t-h2"
+            lines={["Things I built", "and actually shipped."]}
+          />
+        </div>
+        <p className="ventures__count t-eyebrow">
+          {String(projects.length).padStart(2, "0")} / Projects
+        </p>
       </div>
 
-      <div className="cards">
-        {projects.map((project) => (
-          <Project key={project.id} project={project} />
-        ))}
-      </div>
+      <ul className="ventures__list">
+        {projects.map((project, i) => {
+          const { name, kicker } = splitTitle(project.title);
+          return (
+            <FadeUp
+              as="li"
+              key={project.id}
+              className="venture"
+              delay={i % 2 === 1 ? 120 : 0}
+            >
+              <article className="venture__card">
+                <a
+                  className="venture__link"
+                  href={project.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <LiquidImage
+                    src={project.image}
+                    alt={`${name} screenshot`}
+                    label={name}
+                    className="venture__media"
+                  />
+
+                  <div className="venture__row">
+                    <div className="venture__text">
+                      <h3 className="venture__name">{name}</h3>
+                      <p className="venture__blurb t-body">
+                        {kicker || project.description}
+                      </p>
+                    </div>
+                    <div className="venture__meta">
+                      <span className="venture__outcome">Live ↗</span>
+                    </div>
+                  </div>
+
+                  <p className="venture__cat t-eyebrow">
+                    {project.tags.join(" · ")}
+                  </p>
+                </a>
+              </article>
+            </FadeUp>
+          );
+        })}
+      </ul>
     </section>
   );
 }
