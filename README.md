@@ -25,8 +25,9 @@ _Deployment link to be added._
 | ------- | -------------- |
 | Profile | Name, photo, short introduction, availability |
 | Projects | Three deployed projects, each linking to the live site |
+| Story | Who I am, plus the four kinds of work I take on |
 | Skills | Languages, frameworks, data, infrastructure, tooling |
-| Services | The kind of backend work I take on |
+| Impact | The numbers, in display type |
 | Education | Course, school, and year level |
 | Contact | Email, GitHub, location |
 
@@ -34,7 +35,9 @@ _Deployment link to be added._
 
 - **React 18** — the page is composed of small components, one per section
 - **Vite** — dev server and production build
+- **Lenis** — smooth scrolling and smooth anchor jumps
 - **Plain CSS** — no framework; design tokens live in `:root`
+- **Anton + Onest** (Google Fonts) — display and body type
 
 ## Running It Locally
 
@@ -59,29 +62,52 @@ src/
   main.jsx              mounts React onto #root
   App.jsx               lists the sections in page order
   index.css             all styling, design tokens at the top
-  components/           one file per section of the page
+  components/           one file per section, plus Reveal and LiquidImage
   data/projects.js      project content, kept out of the markup
-  hooks/useReveal.js    fades sections in as they scroll into view
+  hooks/useInView.js    fires a reveal the first time it is scrolled to
+  hooks/useLenis.js     smooth scroll + smooth anchor jumps
+  hooks/useAdaptiveGrid.js  scales the root font-size above 1920px
 assets/                 photo and project screenshots
 public/favicon.svg      browser tab icon
 ```
 
 ### The layout
 
-Every block on the page is a rounded card (`.bx` in `index.css`) placed
-on a CSS Grid. Cards span one or two columns and collapse to a single
-column on phones, which is what gives the page its "bento" look.
+The page is a dark one-pager. Its signature is the hero: the surname in
+giant accent-red display type with a cut-out portrait standing in front
+of it.
+
+The whole layout is authored in `rem` against a 1920px base where the
+root font-size is 16px. Media queries at the top of `index.css` drive
+the root size from the viewport width, so every `rem` in the file
+scales proportionally rather than needing its own breakpoint. Above
+1920px `useAdaptiveGrid` takes over, since no `vw` query matches there.
+
+### The motion
+
+Reveals use one mechanism: a clipping parent with an inner span that
+slides up, staggered by CSS `transition-delay`. The hero runs on fixed
+delays that wait out the preloader; every other section fires when it
+is first scrolled into view, and never replays.
+
+`LiquidImage` is the exception. Its SVG filter animates `scale` and
+`baseFrequency`, which are *attributes*, not CSS properties — a
+transition cannot reach them, so a spring is integrated per frame in
+JavaScript and writes them directly.
 
 ### Editing the content
 
 | What to change | Where |
 | -------------- | ----- |
 | Projects | `src/data/projects.js` |
-| Name, photo, intro | `src/components/Hero.jsx` |
+| Name, portrait, roles, intro | `src/components/Hero.jsx` |
+| The four kinds of work | `src/components/Story.jsx` |
+| Marquee words | `src/components/Marquee.jsx` |
 | Skills | `src/components/StackSection.jsx` |
+| Stat figures | `src/components/Impact.jsx` |
 | Education | `src/components/Education.jsx` |
-| Contact details | `src/components/Contact.jsx` |
-| Colors, spacing, radii | `:root` in `src/index.css` |
+| Email, social, copyright | `src/components/ContactFooter.jsx` |
+| Colours, type scale, spacing | `:root` in `src/index.css` |
 
 To add a project: put a screenshot in `assets/`, import it at the top of
 `src/data/projects.js`, and add an object to the array.
