@@ -1,75 +1,104 @@
 import { projects } from "../data/projects.js";
-import { RevealLines, FadeUp } from "./Reveal.jsx";
+import Slide from "./Slide.jsx";
+import { FadeUp } from "./Reveal.jsx";
 import LiquidImage from "./LiquidImage.jsx";
 
-// Titles read "Name — what it is"; the card wants those halves apart.
+// Titles read "Name — what it is"; the slide wants those halves apart.
 function splitTitle(title) {
   const [name, ...rest] = title.split("—");
   return { name: name.trim(), kicker: rest.join("—").trim() };
 }
 
+// Each project gets its own slide, alternating ink and paper.
 export default function Projects() {
-  return (
-    <section className="section ventures" id="projects">
-      <div className="ventures__head">
-        <div>
-          <p className="eyebrow">Selected Work</p>
-          <RevealLines
-            as="h2"
-            className="ventures__heading display t-h2"
-            lines={["Things I built", "and actually shipped."]}
-          />
-        </div>
-        <p className="ventures__count t-eyebrow">
-          {String(projects.length).padStart(2, "0")} / Projects
-        </p>
-      </div>
+  return projects.map((project, i) => {
+    const { name, kicker } = splitTitle(project.title);
+    return (
+      <Slide
+        key={project.id}
+        // The first project slide is what the nav's "Projects" jumps to.
+        id={i === 0 ? "projects" : `project-${project.id}`}
+        num={`4.${i + 1}`}
+        title={`Projects — ${String(i + 1).padStart(2, "0")} / ${String(
+          projects.length
+        ).padStart(2, "0")}`}
+        label={name}
+        meta="Live"
+        variant={i % 2 === 0 ? "ink" : "paper"}
+      >
+        <div className="split split--rev">
+          <div>
+            <FadeUp as="h2" className="dot h-lg">
+              {name}
+            </FadeUp>
+            {kicker && (
+              <FadeUp as="p" className="project__kicker t-lead" delay={60}>
+                {kicker}
+              </FadeUp>
+            )}
+            <FadeUp as="p" className="project__desc t-body" delay={120}>
+              {project.description}
+            </FadeUp>
 
-      <ul className="ventures__list">
-        {projects.map((project, i) => {
-          const { name, kicker } = splitTitle(project.title);
-          return (
-            <FadeUp
-              as="li"
-              key={project.id}
-              className="venture"
-              delay={i % 2 === 1 ? 120 : 0}
-            >
-              <article className="venture__card">
+            {project.details && (
+              <FadeUp as="dl" className="facts project__specs" delay={180}>
+                {project.details.map((d) => (
+                  <div className="facts__row" key={d.label}>
+                    <dt>{d.label}</dt>
+                    <dd>{d.value}</dd>
+                  </div>
+                ))}
+              </FadeUp>
+            )}
+
+            <FadeUp as="ul" className="chips project__tags" delay={220}>
+              {project.tags.map((tag) => (
+                <li className="chip" key={tag}>
+                  {tag}
+                </li>
+              ))}
+            </FadeUp>
+
+            <FadeUp className="project__actions" delay={260}>
+              <a
+                className="btn"
+                href={project.href}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Visit live <span aria-hidden="true">↗</span>
+              </a>
+              {project.repo && (
                 <a
-                  className="venture__link"
-                  href={project.href}
+                  className="btn btn--ghost"
+                  href={project.repo}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <LiquidImage
-                    src={project.image}
-                    alt={`${name} screenshot`}
-                    label={name}
-                    className="venture__media"
-                  />
-
-                  <div className="venture__row">
-                    <div className="venture__text">
-                      <h3 className="venture__name">{name}</h3>
-                      <p className="venture__blurb t-body">
-                        {kicker || project.description}
-                      </p>
-                    </div>
-                    <div className="venture__meta">
-                      <span className="venture__outcome">Live ↗</span>
-                    </div>
-                  </div>
-
-                  <p className="venture__cat t-eyebrow">
-                    {project.tags.join(" · ")}
-                  </p>
+                  Code on GitHub <span aria-hidden="true">↗</span>
                 </a>
-              </article>
+              )}
             </FadeUp>
-          );
-        })}
-      </ul>
-    </section>
-  );
+          </div>
+
+          <FadeUp className="project__aside" delay={100}>
+            <a
+              className="project__media"
+              href={project.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Open ${name}`}
+            >
+              <LiquidImage
+                src={project.image}
+                alt={`${name} screenshot`}
+                label={name}
+                className="project__shot"
+              />
+            </a>
+          </FadeUp>
+        </div>
+      </Slide>
+    );
+  });
 }

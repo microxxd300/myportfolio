@@ -1,3 +1,4 @@
+import Slide from "./Slide.jsx";
 import { RevealLines, FadeUp } from "./Reveal.jsx";
 
 // Add past schools here as they apply — each renders as its own row
@@ -13,28 +14,27 @@ const ENTRIES = [
 
 export default function Education() {
   return (
-    <section className="section education" id="education">
-      <div className="education__head">
-        <p className="eyebrow">Education</p>
-        <RevealLines
-          as="h2"
-          className="education__heading display t-h2"
-          lines={["Where I'm studying."]}
-        />
-      </div>
+    <Slide
+      id="education"
+      num="7.0"
+      title="Education"
+      meta="School"
+      variant="ink"
+    >
+      <RevealLines as="h2" className="dot h-lg" lines={["Where I study."]} />
 
-      <ul className="education__list">
+      <ul className="edu__list">
         {ENTRIES.map((e, i) => (
           <FadeUp as="li" className="edu" key={e.degree} delay={i * 110}>
-            <div className="edu__main">
-              <h3 className="edu__degree">{e.degree}</h3>
-              <p className="edu__where t-body">{e.school}</p>
+            <div>
+              <h3 className="dot h-md">{e.degree}</h3>
+              <p className="edu__where t-lead">{e.school}</p>
               <p className="edu__where t-body">{e.place}</p>
             </div>
-            <span className="edu__year t-eyebrow">{e.year}</span>
+            <span className="chip edu__year">{e.year}</span>
           </FadeUp>
         ))}
       </ul>
-    </section>
+    </Slide>
   );
 }
