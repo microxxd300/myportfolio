@@ -5,7 +5,7 @@ import portrait from "../../assets/profile_suit_cutout.webp";
 // The hero waits out the preloader: ~2000ms of counting plus the wipe.
 const REVEAL_DELAY = 2500;
 
-const ROLES = ["Backend", "Developer", "Builder", "Student"];
+const ROLES = ["Software", "Engineer", "AI", "Automation"];
 
 export default function Hero() {
   // The watery distortion rides the name, not the portrait.

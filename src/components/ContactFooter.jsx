@@ -42,7 +42,7 @@ export default function ContactFooter() {
         <div className="footbar__sig">
           <p className="display t-h2">Kurt Z. Lumpayao</p>
           <p className="footbar__tag t-eyebrow">
-            Backend developer · Davao del Norte, PH
+            Software engineer · Davao del Norte, PH
           </p>
         </div>
 
