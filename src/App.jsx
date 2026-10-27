@@ -1,13 +1,15 @@
 import { useAdaptiveGrid } from "./hooks/useAdaptiveGrid.js";
 import { useLenis } from "./hooks/useLenis.js";
+import { useSlideStack } from "./hooks/useSlideStack.js";
 import Preloader from "./components/Preloader.jsx";
 import SiteNav from "./components/SiteNav.jsx";
+import Pager from "./components/Pager.jsx";
 import Hero from "./components/Hero.jsx";
-import Marquee from "./components/Marquee.jsx";
-import Story from "./components/Story.jsx";
+import Profile from "./components/Profile.jsx";
+import Process from "./components/Process.jsx";
 import Experience from "./components/Experience.jsx";
 import Projects from "./components/Projects.jsx";
-import Impact from "./components/Impact.jsx";
+import Metrics from "./components/Metrics.jsx";
 import StackSection from "./components/StackSection.jsx";
 import Education from "./components/Education.jsx";
 import ContactFooter from "./components/ContactFooter.jsx";
@@ -15,18 +17,20 @@ import ContactFooter from "./components/ContactFooter.jsx";
 export default function App() {
   useAdaptiveGrid();
   const lenisRef = useLenis();
+  const { slides, active } = useSlideStack();
 
   return (
     <>
       <Preloader lenisRef={lenisRef} />
       <SiteNav />
-      <main>
+      <Pager slides={slides} active={active} />
+      <main className="deck">
         <Hero />
-        <Marquee />
-        <Story />
+        <Profile />
+        <Process />
         <Experience />
         <Projects />
-        <Impact />
+        <Metrics />
         <StackSection />
         <Education />
         <ContactFooter />
