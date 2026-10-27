@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 
 const LINKS = [
-  { label: "Story", href: "#story" },
+  { label: "Profile", href: "#profile" },
   { label: "Experience", href: "#experience" },
   { label: "Projects", href: "#projects" },
-  { label: "Impact", href: "#impact" },
   { label: "Skills", href: "#skills" },
+  { label: "Education", href: "#education" },
   { label: "Contact", href: "#contact" },
 ];
+
+const MARK = Array.from({ length: 9 });
 
 export default function SiteNav() {
   const [open, setOpen] = useState(false);
@@ -29,10 +31,14 @@ export default function SiteNav() {
   return (
     <>
       <header className="nav">
-        <nav className="nav__inner">
+        <nav className="nav__inner" aria-label="Primary">
           <a className="nav__logo" href="#top">
-            <span className="nav__mono">KL</span>
-            <span className="nav__name">Kurt Z. Lumpayao</span>
+            <span className="nav__mark" aria-hidden="true">
+              {MARK.map((_, i) => (
+                <i key={i} />
+              ))}
+            </span>
+            Kurt Z. Lumpayao
           </a>
 
           <ul className="nav__links">
@@ -44,6 +50,10 @@ export default function SiteNav() {
               </li>
             ))}
           </ul>
+
+          <a className="btn nav__cta" href="mailto:kurtlumpayao25@gmail.com">
+            Say hi <span aria-hidden="true">↗</span>
+          </a>
 
           <button
             type="button"
@@ -63,12 +73,14 @@ export default function SiteNav() {
         <div className="menu">
           <ul className="menu__list">
             {LINKS.map((l, i) => (
-              <li key={l.href} style={{ "--d": `${120 + i * 70}ms` }}>
+              <li key={l.href}>
                 <a
-                  className="menu__link display t-h2"
+                  className="menu__link dot"
                   href={l.href}
+                  style={{ "--d": `${120 + i * 70}ms` }}
                   onClick={() => setOpen(false)}
                 >
+                  <small>{String(i + 1).padStart(2, "0")}</small>
                   {l.label}
                 </a>
               </li>
