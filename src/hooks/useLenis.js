@@ -8,6 +8,10 @@ export function useLenis() {
   const lenisRef = useRef(null);
 
   useEffect(() => {
+    // Every visit starts at the top behind the preloader, so do not let
+    // the browser restore a stale position underneath it on reload.
+    if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduce) return;
 
@@ -30,7 +34,12 @@ export function useLenis() {
       const target = document.querySelector(id);
       if (!target) return;
       e.preventDefault();
-      lenis.scrollTo(target);
+      // Resolve the destination from the real scroll position. Handing
+      // Lenis the element makes it add the rect to its own internal
+      // position, so any drift between the two lands the jump off target.
+      const margin = parseFloat(getComputedStyle(target).scrollMarginTop) || 0;
+      const y = target.getBoundingClientRect().top + window.scrollY - margin;
+      lenis.scrollTo(Math.max(0, y));
     };
     document.addEventListener("click", onClick);
 
