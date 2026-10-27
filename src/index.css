@@ -650,6 +650,33 @@ main {
   max-width: 46ch;
   color: var(--muted);
 }
+.objective {
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--line);
+}
+.objective__label {
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--accent);
+}
+.objective__label + .objective__text,
+.objective__label + .objective__chips {
+  margin-top: 0.75rem;
+}
+.objective__text + .objective__label {
+  margin-top: 1.75rem;
+}
+.objective__text {
+  max-width: 46ch;
+  color: var(--foreground);
+}
+.objective__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
 .principle {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);

@@ -25,6 +25,12 @@ const PRINCIPLES = [
   },
 ];
 
+const INTERESTS = [
+  "Software Engineering",
+  "AI Engineering",
+  "Workflow Automation with AI",
+];
+
 export default function Story() {
   return (
     <section className="section story" id="story">
@@ -44,6 +50,23 @@ export default function Story() {
             monitored, and serving real users. I learn by shipping the whole
             thing — data model, API, auth, payments, background jobs, and the
             deployment that makes it real.
+          </FadeUp>
+
+          <FadeUp className="objective" delay={120}>
+            <h3 className="objective__label t-eyebrow">Career Objective</h3>
+            <p className="objective__text t-body">
+              To grow from software engineer into AI engineer, building
+              software that automates real-world workflows with AI.
+            </p>
+
+            <h3 className="objective__label t-eyebrow">Interests</h3>
+            <ul className="objective__chips">
+              {INTERESTS.map((item) => (
+                <li className="chip t-eyebrow" key={item}>
+                  {item}
+                </li>
+              ))}
+            </ul>
           </FadeUp>
         </div>
 
