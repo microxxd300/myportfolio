@@ -1,3 +1,4 @@
+import Slide from "./Slide.jsx";
 import { RevealLines, FadeUp } from "./Reveal.jsx";
 
 // `period` and `body` are optional — an entry renders cleanly without
@@ -11,35 +12,32 @@ const ENTRIES = [
 
 export default function Experience() {
   return (
-    <section className="section experience" id="experience">
-      <div className="experience__head">
-        <p className="eyebrow">Experience</p>
-        <RevealLines
-          as="h2"
-          className="experience__heading display t-h2"
-          lines={["Where I've worked."]}
-        />
-      </div>
+    <Slide
+      id="experience"
+      num="3.0"
+      title="Experience"
+      meta="Work"
+      variant="red"
+    >
+      <RevealLines as="h2" className="dot h-lg" lines={["Where I've worked."]} />
 
-      <ul className="experience__list">
+      <ul className="exp__list">
         {ENTRIES.map((e, i) => (
           <FadeUp
             as="li"
-            className="job"
+            className="exp__row"
             key={`${e.org}-${e.role}`}
             delay={i * 110}
           >
-            <div className="job__main">
-              <h3 className="job__role">{e.role}</h3>
-              <p className="job__org t-body">{e.org}</p>
-              {e.body && <p className="job__body t-body">{e.body}</p>}
+            <div>
+              <h3 className="dot h-md">{e.role}</h3>
+              <p className="exp__org t-lead">{e.org}</p>
+              {e.body && <p className="exp__body t-body">{e.body}</p>}
             </div>
-            {e.period && (
-              <span className="job__period t-eyebrow">{e.period}</span>
-            )}
+            {e.period && <span className="chip exp__period">{e.period}</span>}
           </FadeUp>
         ))}
       </ul>
-    </section>
+    </Slide>
   );
 }

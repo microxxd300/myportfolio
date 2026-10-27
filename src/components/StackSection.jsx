@@ -1,9 +1,15 @@
+import Slide from "./Slide.jsx";
 import { RevealLines, FadeUp } from "./Reveal.jsx";
 
 const GROUPS = [
   {
     label: "Languages & Frameworks",
     items: ["Python", "Django", "Django REST Framework", "FastAPI"],
+  },
+  {
+    // All drawn from the projects in this deck.
+    label: "AI & LLMs",
+    items: ["LLM APIs", "Gemini", "Groq", "Ollama", "Workflow Automation"],
   },
   {
     label: "Data & Infrastructure",
@@ -15,29 +21,26 @@ const GROUPS = [
   },
   {
     label: "Tooling",
-    items: ["Git & CI/CD", "Stripe", "JWT / OAuth2", "Swagger", "Pytest"],
+    items: ["Git & GitHub", "CI/CD", "Stripe", "JWT / OAuth2", "Pytest"],
   },
 ];
 
 export default function StackSection() {
   return (
-    <section className="section skills" id="skills">
-      <div className="skills__head">
-        <p className="eyebrow">The Toolkit</p>
-        <RevealLines
-          as="h2"
-          className="skills__heading display t-h2"
-          lines={["What I build with."]}
-        />
-      </div>
+    <Slide id="skills" num="6.0" title="Skills" meta="Toolkit" variant="paper">
+      <RevealLines
+        as="h2"
+        className="dot h-lg"
+        lines={["What I build with."]}
+      />
 
       <ul className="skills__list">
         {GROUPS.map((g, i) => (
           <FadeUp as="li" className="skillrow" key={g.label} delay={i * 90}>
-            <h3 className="skillrow__label t-body">{g.label}</h3>
-            <ul className="skillrow__chips">
+            <h3 className="mono">{g.label}</h3>
+            <ul className="chips">
               {g.items.map((item) => (
-                <li className="chip t-eyebrow" key={item}>
+                <li className="chip" key={item}>
                   {item}
                 </li>
               ))}
@@ -45,6 +48,6 @@ export default function StackSection() {
           </FadeUp>
         ))}
       </ul>
-    </section>
+    </Slide>
   );
 }

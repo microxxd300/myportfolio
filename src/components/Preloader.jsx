@@ -64,20 +64,24 @@ export default function Preloader({ lenisRef }) {
       className={`preloader ${phase === "wiping" ? "is-wiping" : ""}`}
       aria-hidden={phase !== "counting"}
     >
-      <div className="preloader__bg" />
       <span
-        className={`preloader__brand display t-h3 ${
+        className={`preloader__brand mono ${
           phase === "counting" ? "" : "is-out"
         }`}
       >
-        Kurt Z. Lumpayao
+        <span className="nav__mark" aria-hidden="true">
+          {Array.from({ length: 9 }, (_, i) => (
+            <i key={i} />
+          ))}
+        </span>
+        Kurt Z. Lumpayao — CV
       </span>
       <span
-        className={`preloader__count display t-display ${
+        className={`preloader__count dot ${
           phase === "counting" ? "" : "is-out"
         }`}
       >
-        {count}
+        {String(count).padStart(3, "0")}
         <span className="preloader__pct">%</span>
       </span>
     </div>

@@ -1,77 +1,91 @@
-import { RevealLetters, RevealLines, FadeUp } from "./Reveal.jsx";
+import Slide from "./Slide.jsx";
+import { RevealLetters, FadeUp } from "./Reveal.jsx";
 import { useLiquidFilter, LiquidFilterDefs } from "./LiquidFilter.jsx";
-import portrait from "../../assets/profile_suit_cutout.webp";
+import dots from "../../assets/profile_dots.webp";
 
 // The hero waits out the preloader: ~2000ms of counting plus the wipe.
 const REVEAL_DELAY = 2500;
-
-const ROLES = ["Software", "Engineer", "AI", "Automation"];
 
 export default function Hero() {
   // The watery distortion rides the name, not the portrait.
   const { filterId, hostRef, dispRef, turbRef } = useLiquidFilter(14);
 
   return (
-    <section className="hero" id="top">
-      <div className="hero__top">
-        <h2 className="hero__roles display t-h3">
-          <RevealLines
-            lines={ROLES}
-            delay={REVEAL_DELAY + 200}
-            stagger={80}
-            immediate
-          />
-        </h2>
+    <Slide
+      id="top"
+      num="0.0"
+      title="Introduction"
+      label="Intro"
+      meta="CV / 2026"
+      variant="red"
+      className="hero"
+    >
+      <div className="hero__copy">
+        <FadeUp className="hero__roles" delay={REVEAL_DELAY + 200} immediate>
+          <span className="mono">Software Engineer</span>
+          <span className="mono hero__arrow" aria-hidden="true">
+            →
+          </span>
+          <span className="mono">Aspiring AI Engineer</span>
+        </FadeUp>
+
+        <LiquidFilterDefs
+          filterId={filterId}
+          turbRef={turbRef}
+          dispRef={dispRef}
+        />
+        <h1
+          className="hero__name dot"
+          ref={hostRef}
+          style={{ filter: `url(#${filterId})` }}
+        >
+          <span className="hero__line">
+            <RevealLetters text="Kurt" delay={REVEAL_DELAY} immediate />
+          </span>
+          <span className="hero__line">
+            <RevealLetters
+              text="Lumpayao"
+              delay={REVEAL_DELAY + 240}
+              immediate
+            />
+          </span>
+        </h1>
 
         <FadeUp
           as="p"
-          className="hero__desc t-body"
+          className="hero__intro t-lead"
           delay={REVEAL_DELAY + 400}
           immediate
         >
-          I build fast, secure REST APIs with Django, FastAPI and Python —
-          payments, auth, background jobs, and the details users never see —
-          shipped end to end, from data model to deployment.
+          I build fast, secure APIs with Django, FastAPI and Python — and
+          automate the workflows around them with AI. Shipped end to end, from
+          data model to deployment.
+        </FadeUp>
+
+        <FadeUp className="hero__foot" delay={REVEAL_DELAY + 700} immediate>
+          <a className="btn" href="#projects">
+            See the work <span aria-hidden="true">↓</span>
+          </a>
+          <a className="btn btn--ghost" href="#contact">
+            Get in touch
+          </a>
         </FadeUp>
       </div>
 
-      <div className="hero__portrait">
-        <img
-          className="hero__photo"
-          src={portrait}
-          alt="Portrait of Kurt Z. Lumpayao"
+      {/* The dots are a mask, so they print in whatever ink the slide uses. */}
+      <div
+        className="hero__portrait"
+        role="img"
+        aria-label="Halftone portrait of Kurt Z. Lumpayao"
+      >
+        <div
+          className="hero__dots"
+          style={{
+            WebkitMaskImage: `url(${dots})`,
+            maskImage: `url(${dots})`,
+          }}
         />
       </div>
-
-      <div className="hero__base" aria-hidden="true" />
-
-      <LiquidFilterDefs
-        filterId={filterId}
-        turbRef={turbRef}
-        dispRef={dispRef}
-      />
-
-      <h1
-        className="hero__name display"
-        ref={hostRef}
-        style={{ filter: `url(#${filterId})` }}
-      >
-        <span className="hero__line">
-          <RevealLetters text="Kurt" delay={REVEAL_DELAY} immediate />
-        </span>
-        <span className="hero__line">
-          <RevealLetters text="Lumpayao" delay={REVEAL_DELAY + 240} immediate />
-        </span>
-      </h1>
-
-      <FadeUp
-        className="hero__cue t-eyebrow"
-        delay={REVEAL_DELAY + 900}
-        immediate
-      >
-        <span className="hero__cue-rule" aria-hidden="true" />
-        Scroll to enter
-      </FadeUp>
-    </section>
+    </Slide>
   );
 }
