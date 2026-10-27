@@ -1,6 +1,7 @@
 // ─────────────────────────────────────────────────────────────
 //  Your projects live here. Edit freely — add, remove, reorder.
 //  `image` is an imported screenshot from /assets.
+//  `href` is the live site; `repo` is the source on GitHub (optional).
 // ─────────────────────────────────────────────────────────────
 
 import studyHubImg from "../../assets/study_buddy.png";
@@ -34,6 +35,7 @@ export const projects = [
     tags: ["Backend", "FastAPI", "AI", "Live"],
     image: studyHubImg,
     href: "https://study-hub-gray-seven.vercel.app",
+    repo: "https://github.com/microxxd300/study_hub_backend",
   },
   {
     id: 2,
@@ -56,6 +58,7 @@ export const projects = [
     tags: ["Backend", "AI", "Django", "React", "Live"],
     image: aiTextToolkitImg,
     href: "https://llm-mental-model-frontend.vercel.app/",
+    repo: "https://github.com/microxxd300/llm_mental_model",
   },
   {
     id: 3,
@@ -81,6 +84,7 @@ export const projects = [
     tags: ["Backend", "Django", "Stripe", "Live"],
     image: ecommerceImg,
     href: "https://ecommerce-storefront-silk.vercel.app/",
+    repo: "https://github.com/microxxd300/ecommerce_backend",
   },
   {
     id: 4,
@@ -103,5 +107,6 @@ export const projects = [
     tags: ["Full-Stack", "Django", "React", "Live"],
     image: blogImg,
     href: "https://blog-frontend-xi-blond.vercel.app",
+    repo: "https://github.com/microxxd300/blog-frontend",
   },
 ];
