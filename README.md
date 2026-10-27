@@ -16,8 +16,8 @@ my skills, the projects I have deployed, and how to contact me.
 
 ## Live Site
 
-<!-- Replace with your deployed URL once it is live. -->
-_Deployment link to be added._
+**https://kzlportfolio.vercel.app** — deployed on Vercel from this
+repository's `main` branch.
 
 ## What the Page Contains
 
@@ -25,7 +25,8 @@ _Deployment link to be added._
 | ------- | -------------- |
 | Profile | Name, photo, short introduction, availability |
 | Projects | Three deployed projects, each linking to the live site |
-| Story | Who I am, plus the four kinds of work I take on |
+| Story | Who I am, career objective, interests, and the four kinds of work I take on |
+| Experience | Where I've worked |
 | Skills | Languages, frameworks, data, infrastructure, tooling |
 | Impact | The numbers, in display type |
 | Education | Course, school, and year level |
@@ -101,7 +102,8 @@ JavaScript and writes them directly.
 | -------------- | ----- |
 | Projects | `src/data/projects.js` |
 | Name, portrait, roles, intro | `src/components/Hero.jsx` |
-| The four kinds of work | `src/components/Story.jsx` |
+| Objective, interests, the four kinds of work | `src/components/Story.jsx` |
+| Experience | `src/components/Experience.jsx` |
 | Marquee words | `src/components/Marquee.jsx` |
 | Skills | `src/components/StackSection.jsx` |
 | Stat figures | `src/components/Impact.jsx` |
@@ -116,3 +118,4 @@ To add a project: put a screenshot in `assets/`, import it at the top of
 
 **Kurt Z. Lumpayao** — kurtlumpayao25@gmail.com
 GitHub: [@microxxd300](https://github.com/microxxd300)
+LinkedIn: [kurt-lumpayao](https://www.linkedin.com/in/kurt-lumpayao-a87643314)
