@@ -4,6 +4,10 @@ const EMAIL = "kurtlumpayao25@gmail.com";
 
 const SOCIAL = [
   { label: "GitHub", href: "https://github.com/microxxd300" },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/kurt-lumpayao-a87643314",
+  },
   { label: "Email", href: `mailto:${EMAIL}` },
 ];
 
