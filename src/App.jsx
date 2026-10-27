@@ -5,6 +5,7 @@ import SiteNav from "./components/SiteNav.jsx";
 import Hero from "./components/Hero.jsx";
 import Marquee from "./components/Marquee.jsx";
 import Story from "./components/Story.jsx";
+import Experience from "./components/Experience.jsx";
 import Projects from "./components/Projects.jsx";
 import Impact from "./components/Impact.jsx";
 import StackSection from "./components/StackSection.jsx";
@@ -23,6 +24,7 @@ export default function App() {
         <Hero />
         <Marquee />
         <Story />
+        <Experience />
         <Projects />
         <Impact />
         <StackSection />

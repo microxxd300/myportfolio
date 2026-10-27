@@ -923,17 +923,20 @@ main {
 }
 
 /* ============================================================
-   Education
+   Education + experience
    ============================================================ */
-.education__heading {
+.education__heading,
+.experience__heading {
   margin-top: 1.5rem;
   line-height: 1;
 }
-.education__list {
+.education__list,
+.experience__list {
   margin-top: 4rem;
   border-top: 1px solid var(--line);
 }
-.edu {
+.edu,
+.job {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -941,16 +944,24 @@ main {
   border-bottom: 1px solid var(--line);
   padding: 2.5rem 0;
 }
-.edu__degree {
+.edu__degree,
+.job__role {
   font-size: 1.75rem;
   font-weight: 600;
   letter-spacing: -0.01em;
   line-height: 1.15;
 }
-.edu__where {
+.edu__where,
+.job__org {
   color: var(--muted);
 }
-.edu__year {
+.job__body {
+  margin-top: 0.75rem;
+  max-width: 60ch;
+  color: var(--muted);
+}
+.edu__year,
+.job__period {
   flex-shrink: 0;
   text-transform: uppercase;
   letter-spacing: 0.18em;
